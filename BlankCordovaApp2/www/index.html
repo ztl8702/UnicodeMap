@@ -1,73 +1,66 @@
 ﻿<!DOCTYPE html>
-
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <title>CharMap</title>
     <link href="vendor/WinJS/css/ui-light.min.css" rel="stylesheet" />
-    <link href="css/app.css" rel="stylesheet"  type="text/css" />
+    <link href="css/app.css" rel="stylesheet" type="text/css" />
 </head>
 <body id="root">
     <div id="app">
-
-    <div data-win-control="WinJS.UI.ContentDialog" data-win-options="{
+        <div data-win-control="WinJS.UI.ContentDialog" data-win-options="{
                  title: 'Character',
                  primaryCommandText: 'Favorite',
                  secondaryCommandText: 'Close'
             }">
-        <h1 class="heading">There will be a Char here!</h1>
-        <div class="body">There will be a Char here!</div>
-    </div>
-
-
-
-    <div class="splitView" data-win-control="WinJS.UI.SplitView">
-        <!-- Pane area -->
-        <div>
-            <div class="header">
-                <button type="button" class="win-splitviewpanetoggle" data-win-control="WinJS.UI.SplitViewPaneToggle" data-win-options="{ splitView: select('.splitView') }"></button>
-                <div class="title">CharMap</div>
-            </div>
-
-            <div class="nav-commands">
-                <div data-win-control="WinJS.UI.SplitViewCommand" data-win-options="{ onclick:CharMap.homeClicked, label: 'Home', icon: 'home'}"></div>
-                <div data-win-control="WinJS.UI.SplitViewCommand" data-win-options="{ onclick: KOApp.favoriteClicked, label: 'Favorite', icon: 'favorite'}"></div>
-                <div data-win-control="WinJS.UI.SplitViewCommand" data-win-options="{ onclick: KOApp.listClicked, label: 'List', icon: 'list'}"></div>
-            </div>
+            <h1 class="heading">There will be a Char here!</h1>
+            <div class="body">There will be a Char here!</div>
         </div>
 
-        <!-- Content area -->
-        <div class="contenttext">
-            <div id="header">
-                <h1 id="title">CharMap Knockout (loading...)</h1>
-                <input class="win-slider" type="range" min="0" max="5" id="blockSlider" value="0" style="width:400px" />
-            </div>
-            
-            <script type="text/html" id="listViewItemTemplate"> 
-                <div class="container">
-                    <div class="letter" data-bind="html: preview"></div>
-                    <div data-bind="html: text"></div>
+        <div class="splitView" data-win-control="WinJS.UI.SplitView">
+            <!-- Pane area -->
+            <div>
+                <div class="header">
+                    <button class="win-splitviewpanetoggle" data-win-control="WinJS.UI.SplitViewPaneToggle" data-win-options="{ splitView: select('.splitView') }"></button>
+                    <div class="title">CharMap</div>
                 </div>
-            </script> 
-
-             <div id="content" class="content" 
-                data-bind="winListView: {
-                    itemTemplate: 'listViewItemTemplate',
-                    itemDataSource: listViewArray, 
-                    layout: {type: WinJS.UI.GridLayout}
-                }"></div> 
+                <div class="nav-commands">
+                    <div data-win-control="WinJS.UI.SplitViewCommand" data-win-options="{ onclick:CharMap.homeClicked, label: 'Home', icon: 'home'}"></div>
+                    <div data-win-control="WinJS.UI.SplitViewCommand" data-win-options="{ onclick: KOApp.favoriteClicked, label: 'Favorite', icon: 'favorite'}"></div>
+                    <div data-win-control="WinJS.UI.SplitViewCommand" data-win-options="{ onclick: KOApp.listClicked, label: 'List', icon: 'list'}"></div>
+                </div>
+            </div>
+            <!-- Content area -->
+            <div class="contenttext">
+                <script type="text/html" id="listViewItemTemplate">
+                    <div class="container">
+                        <div class="letter" data-bind="html: preview"></div>
+                        <div data-bind="html: text"></div>
+                    </div>
+                </script>
+                <div id="header">
+                    <h2 id="title" class="win-h2">CharMap Knockout (loading...)</h2>
+                    <input class="win-slider" type="range" min="0" max="5" id="blockSlider" value="0" />
+                </div>
+                <div id="contentWrapper">
+                   
+                    <div id="content" class="content"
+                             data-bind="winListView: {
+                        itemTemplate: 'listViewItemTemplate',
+                        itemDataSource: listViewArray,
+                        layout: {type: WinJS.UI.GridLayout, orientation: WinJS.UI.Orientation.vertical}
+                    }"></div>
+                </div>
+            </div>
         </div>
-    </div> 
-</div>
+    </div>
     <script src="cordova.js"></script>
     <script src="scripts/platformOverrides.js"></script>
 
-    
     <script src="vendor/WinJS/js/base.min.js"></script>
     <script src="vendor/WinJS/js/ui.min.js"></script>
     <script src="vendor/knockout/knockout-3.3.0.js"></script>
     <script src="vendor/knockout-winjs.js"></script>
-
     <script src="scripts/data/hardcoded_data.js"></script>
     <script src="scripts/charmap.js"></script>
     <script src="scripts/knockoutApp.js"></script>

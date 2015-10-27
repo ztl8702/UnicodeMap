@@ -1,86 +1,108 @@
 .win-rating .win-star {
-  height: 14px;
-  width: 14px;
-  font-size: 14px;
-  padding: 3px;
+    height: 14px;
+    width: 14px;
+    font-size: 14px;
+    padding: 3px;
 }
 
-#root  {
+#root {
     font-family: 'Segoe UI', sans-serif;
     display: flex;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
     flex-direction: column;
 }
-#root .name {
-    font-size: 28px;
-}
 
-#root .container {
-    width: 100px;
-    height: 90px;
-    border: 2px solid black;
-    padding: 3px;
-    /*margin: 3px;*/
-    font-size: 9px;
-}
+    #root .name {
+        font-size: 28px;
+    }
 
-#root .container {
-    display: flex;
-    flex-direction: column;
-}
-#root .container .text {
-    flex:1;
-}
+    #root .container {
+        width: 100px;
+        height: 90px;
+        border: 2px solid black;
+        padding: 3px;
+        /*margin: 3px;*/
+        font-size: 9px;
+    }
 
-#root .letter {
-    font-size: 28px;
-    text-align: center;
-}
+    #root .container {
+        display: flex;
+        -ms-flex-direction: column;
+        -webkit-flex-direction: column;
+        flex-direction: column;
+    }
+
+        #root .container .text {
+            -ms-flex: 1;
+            -webkit-flex: 1;
+            flex: 1;
+        }
+
+    #root .letter {
+        font-size: 28px;
+        text-align: center;
+    }
 
 .win-hub-section-content {
     display: flex;
 }
+
 .win-hub-horizontal .win-hub-surface {
     padding: 0px;
 }
+
 .win-hub-horizontal .win-hub-section-header {
     margin: 0px;
 }
+
 .win-hub-horizontal .win-hub-section-content {
     height: calc(100% - 68px);
 }
 
 .hubSectionLetterContainer {
-    flex:1;
+    -ms-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
     display: flex;
+    -ms-flex-direction: row;
+    -webkit-flex-direction: row;
     flex-direction: row;
+    -ms-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
     overflow: hidden;
 }
-.hubSectionLetterContainer .item {
-    width: 150px;
-    height: 75px;
-}
+
+    .hubSectionLetterContainer .item {
+        width: 150px;
+        height: 75px;
+    }
 
 #app {
     height: 100%;
 }
 
-/* SplitView pane content style*/
-#app .header {
-    white-space: nowrap;
-}
+    /* SplitView pane content style*/
+    #app .header {
+        white-space: nowrap;
+    }
 
-#app .title {
-    font-size: 25px;
-    left: 50px;
-    margin-top: 6px;
-    vertical-align: middle;
-    display: inline-block;
-}
+    #app .win-splitviewpanetoggle {
+        float: left;
+    }
 
-#app .nav-commands {
-    margin-top: 20px;
-}
+    #app .title {
+        font-size: 25px;
+        left: 50px;
+        margin-top: 6px;
+        vertical-align: middle;
+        display: inline-block;
+    }
+
+    #app .nav-commands {
+        margin-top: 20px;
+    }
 
 .win-splitviewcommand-button {
     background-color: transparent;
@@ -98,7 +120,7 @@
 }
 
 #app .win-splitview-pane {
-  background-color: rgb(224,228,204);
+    background-color: rgb(224,228,204);
 }
 
 /*SplitView content style*/
@@ -107,18 +129,52 @@
 }
 
 #app .contenttext {
-    margin-left: 20px;
-    margin-top: 6px;
-    margin-bottom: 6px;
-    height: calc(100% - 6px - 6px); /* Subtract vertical margins */
+    margin-left: 6px;
+    height: calc( 100% - 12px);
+    width: calc(100% - 6px);
+    padding-bottom: 6px;
+    padding-top: 6px;
+    display: flex;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-wrap: nowrap;
+    -webkit-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+}
+
+#app #header {
+   
+}
+
+.headerPlaceholder {
+    display: none;
+    
+}
+
+#contentWrapper {
+    -ms-flex: 10000 1 auto;
+    -webkit-flex: 10000 1 auto;
+    flex: 10000 1 auto;
+    overflow: hidden;
+    display: flex;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
 }
 
 #app .content {
-    height: calc(100% - 132px); /* Substract height of app header */
+    /* Substract height of app header */
+    display: flex;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -ms-flex: 1 1 auto;
+    -webkit-flex: 1 1 auto;
+    flex: 1 1 auto;
 }
-
-.simpleList {
-    height: calc(100% - 104px); /* Substract height of app header */
-    overflow-x: auto;
-}
-
+    #app .content > .win-viewport {
+        -ms-flex: 1 1 auto;
+        -webkit-flex: 1 1 auto;
+        flex: 1 1 auto;
+    }

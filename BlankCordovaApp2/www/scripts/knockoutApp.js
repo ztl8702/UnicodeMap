@@ -1,46 +1,34 @@
-(function() {
-    var viewModel = {
-        listViewArray: ko.observableArray(),
-        favorites: ko.observableArray()
+(function () {
+    "use strict";
+
+    document.addEventListener( 'deviceready', onDeviceReady.bind(this), false);
+    function onDeviceReady() {
+        // Handle the Cordova pause and resume events
+        document.addEventListener('pause', onPause.bind(this), false);
+        document.addEventListener('resume', onResume.bind(this), false);
+
+        // TODO: Cordova has been loaded. Perform any initialization that requires Cordova here.
+        console.log('deviceready');
+        bootstrap();
+    };
+   
+    function onPause() {
+        // TODO: This application has been suspended. Save application state here.
     };
 
-    window.KOApp = window.KOApp || {};
-    window.KOApp.favoriteClicked = WinJS.UI.eventHandler(function (evt) {
-        viewModel.listViewArray.removeAll();
-        viewModel.listViewArray.push.apply(viewModel.listViewArray, viewModel.favorites());
-    });    
-    window.KOApp.listClicked = WinJS.UI.eventHandler(update);
-
-    function update() {
-        var blockSlider = document.getElementById('blockSlider');
-        var blockIndex = +blockSlider.value;
-        viewModel.listViewArray.removeAll();
-        viewModel.listViewArray.push.apply(viewModel.listViewArray, CharMap.createBlock(blockIndex));
+    function onResume() {
+        // TODO: This application has been reactivated. Restore application state here.
     };
 
 
-   window.onload = function () {
-        var root = document.getElementById('root');
-        WinJS.UI.processAll(root).then(function () {
 
-            // Setup the SplitView Control
-            var splitView = document.querySelector(".splitView").winControl;
-            new WinJS.UI._WinKeyboard(splitView.paneElement);
-            
-            // Load data
-            return window.global_data;
-
-        }).then(function (data) {
-            unicode = data;
-            var title = document.getElementById('title');
-            title.textContent = "CharMap";
-            var blockSlider = (document.getElementById('blockSlider'));
-            blockSlider.max = "" + (unicode.blocks.length - 1);
-            blockSlider.addEventListener("change", update);
-
-            ko.applyBindings(viewModel);
-            update();
-        });
+    function bootstrap() {
+        window.unicode = window.global_data;
+        ko.applyBindings(new unicodeMapViewModel());
+        console.log('window loaded');
+        
+        var title = document.getElementById('title');
+        title.textContent = "UnicodeMap";
 
         var lv = document.getElementById('content');
         lv.addEventListener('iteminvoked', handleListViewItemInvoked);
@@ -53,7 +41,7 @@
         body.textContent = data.name;
         document.querySelector(".win-contentdialog").winControl.show().then(function (e) {
             if(e.result === "primary") { // favorite
-                viewModel.favorites.push(data);
+              //  unicodeMapViewModel.favorites.push(data);
             }
         });
     }
